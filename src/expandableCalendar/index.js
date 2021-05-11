@@ -68,7 +68,8 @@ class ExpandableCalendar extends Component {
     firstDay: 0,
     leftArrowImageSource: require('../calendar/img/previous.png'),
     rightArrowImageSource: require('../calendar/img/next.png'),
-    allowShadow: true
+    allowShadow: true,
+    pagingEnabled:true
   }
 
   static positions = POSITIONS;
@@ -479,7 +480,7 @@ class ExpandableCalendar extends Component {
   }
 
   render() {
-    const {style, hideKnob, horizontal, allowShadow, theme, ...others} = this.props;
+    const {style, hideKnob, horizontal, allowShadow, theme,pagingEnabled, ...others} = this.props;
     const {deltaY, position, screenReaderEnabled} = this.state;
     const isOpen = position === POSITIONS.OPEN;
     const themeObject = Object.assign(this.headerStyleOverride, theme);
@@ -511,7 +512,7 @@ class ExpandableCalendar extends Component {
               current={this.initialDate}
               onDayPress={this.onDayPress}
               onVisibleMonthsChange={this.onVisibleMonthsChange}
-              pagingEnabled
+              pagingEnabled={pagingEnabled}
               scrollEnabled={isOpen}
               markedDates={this.getMarkedDates()}
               hideArrows={this.shouldHideArrows()}
